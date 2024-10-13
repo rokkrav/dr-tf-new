@@ -7,21 +7,24 @@ terraform {
 }
 
 provider "snowflake" {
-  alias = "sys_admin"
-  role = "SYSADMIN"
+ # alias = "sys_admin"
+ # role = "SYSADMIN"
+
+  alias = "acc_admin"
+  role = "ACCOUNTADMIN"
 }
 
 
 resource "snowflake_user" "test_user" {
-  provider = snowflake.sys_admin
-  name  = "test_user"
-  login_name = "test_user"
+  provider = snowflake.acc_admin
+  name  = "dr_user"
+  login_name = "dr_user"
   default_role = "SYSADMIN"
 }
 
 
 resource "snowflake_account_role" "complete" {
-  provider = snowflake.sys_admin
-  name    = "role_name"
+  provider = snowflake.acc_admin
+  name    = "dr_role"
   comment = "my account role"
 }
