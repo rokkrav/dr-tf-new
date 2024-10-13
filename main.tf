@@ -19,18 +19,9 @@ resource "snowflake_user" "test_user" {
   default_role = "SYSADMIN"
 }
 
-resource "snowflake_role" "example_role" {
-  provider = snowflake.sys_admin
-  name = "example_role"
-}
 
-resource "snowflake_database" "dr_database" {
+resource "snowflake_account_role" "complete" {
   provider = snowflake.sys_admin
-  name = "dr_database"
-}
-
-resource "snowflake_schema" "dr_schema" {
-  provider = snowflake.sys_admin
-  name = "dr_schema"
-  database = snowflake_database.dr_database.name
+  name    = "role_name"
+  comment = "my account role"
 }
